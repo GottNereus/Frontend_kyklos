@@ -5,7 +5,7 @@ import { defaultAxiosInstance } from "./Api";
 const LandingPageService = (api: AxiosInstance = defaultAxiosInstance) => ({
     getAllKyklop: async () => {
 
-        const data = await api.get("/", {
+        const data = await api.get("kyklos", {
 
         });
         return data["data"];

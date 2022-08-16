@@ -1,19 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import LandingPageService from "../Service/LandingPageService";
-
+import {Link} from "@mui/material";
+import {Detail} from "./Detail";
+import {useNavigate} from "react-router-dom";
 
 export type Kyklop = {
-    Vulgo: string;
-    Password: string;
+    vulgo: string;
+    password: string;
     id: number;
 };
 
 function LandingPage() {
+
+    const navigate = useNavigate();
+
     useEffect(() => {
         LandingPageService()
             .getAllKyklop()
-            .then((res) => {
-                setKyklops(res);
+            .then((kyklopList) => {
+                setKyklops(kyklopList);
             })
             .catch((error) => {
                 console.log(error);
@@ -24,22 +29,27 @@ function LandingPage() {
 
 
     return (
-        <div>
-            <div>
-                {kyklops.map((kyklop: Kyklop, i: number) => (
-                    <div className="row">
-                        <div className="column">
-                            <div className="card">
-                                <h1>ID: {kyklop.id}</h1>
-                                <h1>Vulgo: {kyklop.Vulgo}</h1>
-                                <h1>PW: {kyklop.Password}</h1>
+        <ul className="card-grid">
+            {kyklops.map((kyklop: Kyklop, i: number) => (
+                <>
+                <Link href={"detail/"+kyklop.id} style={{color: 'inherit', textDecoration: 'none'}}>
+                    <li>
+                        <article className="card" key={i}>
+                            <div className="card-content">
+                                <h2 className="card-name">{kyklop.vulgo}</h2>
+                                <ol className="card-list">
+                                    <li>ID: <span>{kyklop.id}</span></li>
+                                    <li>PW: <span>{kyklop.password}</span></li>
+                                </ol>
                             </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
+                        </article>
+                    </li>
+                </Link>
+                </>
+            ))}
+        </ul>
     );
 }
+
 
 export default LandingPage;
