@@ -3,6 +3,7 @@ import LandingPageService from "../Service/LandingPageService";
 import {Link} from "@mui/material";
 import {Detail} from "./Detail";
 import {useNavigate} from "react-router-dom";
+import "../Css/LandingPage.css"
 
 export type Kyklop = {
     vulgo: string;
@@ -31,7 +32,7 @@ function LandingPage() {
         <ul className="card-grid">
             {kyklops.map((kyklop: Kyklop, i: number) => (
                 <>
-                <Link href={"detail/"+kyklop.id} style={{color: 'inherit', textDecoration: 'none'}}>
+                <Link href={"detail/"+kyklop.id} style={{color: 'inherit', textDecoration: 'none' }}>
                     <li>
                         <article className="card" key={i}>
                             <div className="card-content">
