@@ -27,7 +27,6 @@ function LandingPage() {
 
     const [kyklops, setKyklops] = useState<Kyklop[]>([]);
 
-
     return (
         <ul className="card-grid">
             {kyklops.map((kyklop: Kyklop, i: number) => (
