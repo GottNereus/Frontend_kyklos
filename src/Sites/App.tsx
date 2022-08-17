@@ -5,6 +5,7 @@ import '../Css/NotFound.css'
 import LandingPage from "../Sites/LandingPage";
 import NotFound from "./NotFound";
 import {Detail} from "./Detail";
+import {AddKyklop} from "./AddKyklop";
 
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>
-                <Route path="detail/{id}" element={<Detail/>}/>
+                <Route path="addKyklop/" element={<AddKyklop/>}/>
+                <Route path="detail/:id" element={<Detail/>}/>
                 <Route path="/*/*" element={<NotFound/>}/>
             </Routes>
         </BrowserRouter>

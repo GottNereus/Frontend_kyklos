@@ -87,7 +87,7 @@ ul, ol {
     list-style: none;
 }
 body {
-    background: deeppink;
+    background: lightgrey;
     font-family: sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

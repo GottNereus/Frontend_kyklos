@@ -4,12 +4,9 @@ import {Link} from "@mui/material";
 import {Detail} from "./Detail";
 import {useNavigate} from "react-router-dom";
 import "../Css/LandingPage.css"
+import {Kyklop} from "../Types/Kyklop";
 
-export type Kyklop = {
-    vulgo: string;
-    password: string;
-    id: number;
-};
+
 
 function LandingPage() {
 
@@ -26,9 +23,26 @@ function LandingPage() {
             });
     }, []);
 
+    const handleAdd = ()=>{
+        navigate("addKyklop/")
+    }
+
     const [kyklops, setKyklops] = useState<Kyklop[]>([]);
 
     return (
+        <>
+            <div className="topnav">
+                <button className="addKyklop/" onClick={() => {
+                    handleAdd();
+                }}>Add Kyklop</button>
+
+                <div className="search-container">
+                    <form action="/action_page.php">
+                        <input type="text" placeholder="Search.." name="search"/>
+                            <button type="submit"><i className="fa fa-search"></i></button>
+                    </form>
+                </div>
+        </div>
         <ul className="card-grid">
             {kyklops.map((kyklop: Kyklop, i: number) => (
                 <>
@@ -48,6 +62,7 @@ function LandingPage() {
                 </>
             ))}
         </ul>
+        </>
     );
 }
 
