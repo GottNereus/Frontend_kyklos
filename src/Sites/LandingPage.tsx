@@ -11,6 +11,7 @@ import {Kyklop} from "../Types/Kyklop";
 function LandingPage() {
 
     const navigate = useNavigate();
+    const [kyklops, setKyklops] = useState<Kyklop[]>([]);
 
     useEffect(() => {
         LandingPageService()
@@ -27,7 +28,7 @@ function LandingPage() {
         navigate("addKyklop/")
     }
 
-    const [kyklops, setKyklops] = useState<Kyklop[]>([]);
+
 
     return (
         <>

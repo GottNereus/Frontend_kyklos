@@ -1,6 +1,5 @@
 import { AxiosInstance } from "axios";
 import { defaultAxiosInstance } from "./Api";
-import {Kyklop} from "../Types/Kyklop";
 
 /* CRUD Methoden*/
 const LandingPageService = (api: AxiosInstance = defaultAxiosInstance) => ({
@@ -25,6 +24,11 @@ const LandingPageService = (api: AxiosInstance = defaultAxiosInstance) => ({
 
     putKyklos : async (id:string,vulgo:string,password:string) => {
         await api.put(`kyklos/${id}`,{id,password,vulgo})
+    },
+
+    postKyklop: async (vulgo:string,password:string) => {
+        let id:number = 0;
+        await api.post(`kyklos/`,{id, password, vulgo})
     }
 });
 

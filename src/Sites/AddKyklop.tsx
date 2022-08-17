@@ -1,18 +1,19 @@
 import {useFormik} from "formik";
-import {AddKyklopService} from "../Service/AddKyklopService";
+import {useNavigate} from "react-router-dom";
+import LandingPageService from "../Service/LandingPageService";
 
 
-export function AddKyklop(){
-
+export function AddKyklop() {
+    const navigate = useNavigate();
     const formik = useFormik({
-        initialValues:{
-            vulgo:"",
+        initialValues: {
+            vulgo: "",
             password: "",
         },
-        enableReinitialize : true,
-        onSubmit:(values)=>{
-            AddKyklopService().AddKyklop(values.vulgo,values.password);
-
+        enableReinitialize: true,
+        onSubmit: (values) => {
+            LandingPageService().postKyklop(values.vulgo, values.password);
+            navigate("/")
         }
     })
 
@@ -28,13 +29,13 @@ export function AddKyklop(){
                     )}
                 </label>
                 <input
-                type= "text"
-                id="vulgo"
-                name="vulgo"
-                placeholder="vulgo"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.vulgo}>
+                    type="text"
+                    id="vulgo"
+                    name="vulgo"
+                    placeholder="vulgo"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.vulgo}>
                 </input>
 
                 {/*Password Box*/}
@@ -45,7 +46,7 @@ export function AddKyklop(){
                     )}
                 </label>
                 <input
-                    type= "password"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder="password"

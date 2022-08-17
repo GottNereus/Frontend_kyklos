@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
 import {Kyklop} from "../Types/Kyklop";
@@ -7,6 +7,7 @@ import LandingPageService from "../Service/LandingPageService";
 
 export function Detail() {
 
+    const navigate = useNavigate();
     const {id} = useParams();
     const [kyklop, setKyklop] = useState<Kyklop>();
     const [editMode, setEditMode] = useState<boolean>(false);
@@ -20,6 +21,7 @@ export function Detail() {
 
     const handleDelete = () => {
         LandingPageService().deleteKyklop(id!)
+        navigate("/")
     }
 
     const handleEdit = () => {
@@ -29,8 +31,9 @@ export function Detail() {
     // @ts-ignore
     const handleSubmit = (event) => {
         event.preventDefault()
-        //let transferkyklop: Kyklop = {id:id!,password:event.target.password.value,vulgo:event.target.vulgo.value}
         LandingPageService().putKyklos(id!,event.target.vulgo.value,event.target.password.value)
+        setEditMode(false)
+        navigate("/")
     }
 
     return (
@@ -49,16 +52,18 @@ export function Detail() {
                     <div className="card-content">
                         <form onSubmit={handleSubmit}>
                             <label htmlFor="vulgo">Vulgo: </label>
-                            <input
+                            <input onChange={event => kyklop ? kyklop.vulgo=event.target.value : ""}
                                 type="text"
                                 id="vulgo"
                                 name="vulgo"
+                                placeholder="vulgo"
                             ></input>
                             <label htmlFor="password">Password: </label>
-                            <input
+                            <input  onChange={event => kyklop ? kyklop.password=event.target.value : ""}
                                 type="password"
                                 id="password"
                                 name="password"
+                                placeholder="new password"
                             ></input>
                             <button type="submit">Submit</button>
                         </form>
