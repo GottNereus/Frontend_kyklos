@@ -13,7 +13,7 @@ export function AddKyklop() {
         enableReinitialize: true,
         onSubmit: (values) => {
             LandingPageService().postKyklop(values.vulgo, values.password);
-            navigate("/")
+            navigate("/landingpage")
         }
     })
 

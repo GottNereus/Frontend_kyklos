@@ -1,0 +1,7 @@
+
+.detail{
+    margin: 10%;
+}
+:hover.detail{
+    transform: scale(1);
+}
